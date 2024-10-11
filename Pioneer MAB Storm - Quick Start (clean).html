@@ -1,0 +1,1534 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Pioneer MAB Storm Example Activity / Python Quickstart &#8212; Test OOI Data Labs Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Pioneer MAB Storm - Quick Start (clean)';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Pioneer MAB Profiler Example" href="Pioneer%20MAB%20Profiler%20Example.html" />
+    <link rel="prev" title="Pioneer MAB Storm Example Activity / Python Quickstart" href="Pioneer%20MAB%20Storm%20-%20Quick%20Start.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Test OOI Data Labs Book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Test OOI Data Labs Book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Test Chapters</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mymarkdownfile.html">Here’s my sample title</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sage's Notebooks</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Pioneer%20MAB%20Storm%20-%20Quick%20Start.html">Pioneer MAB Storm Example Activity / Python Quickstart</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pioneer MAB Storm Example Activity / Python Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Pioneer%20MAB%20Profiler%20Example.html">Pioneer MAB Profiler Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Hunga%20Tonga%20Tsunami%20Activity.html">2022 Hunga Tonga Eruption</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://jupyter.oceanobservatories.org/hub/user-redirect/git-pull?repo=https%3A//github.com/seagrinch/book-test&urlpath=lab/tree/book-test/mybook/Pioneer+MAB+Storm+-+Quick+Start+%28clean%29.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on JupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/seagrinch/book-test/blob/main/mybook/Pioneer MAB Storm - Quick Start (clean).ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/seagrinch/book-test" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/seagrinch/book-test/issues/new?title=Issue%20on%20page%20%2FPioneer MAB Storm - Quick Start (clean).html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Pioneer MAB Storm - Quick Start (clean).ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pioneer MAB Storm Example Activity / Python Quickstart</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engage-finding-a-wind-storm">Engage - Finding a Wind Storm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-setup-the-notebook">Step 0 - Setup the notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-the-data-with-erddapy">Step 1 - Load the Data with erddapy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-a-quick-plot-of-winds">Step 2 - A Quick Plot of Winds</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-comparing-winds-and-waves">Explore - Comparing Winds and Waves</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-and-wave-plots">Wind and Wave Plots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data-on-the-same-graph">Plot the data on the same graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subplots">Subplots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#twinx-plot">TwinX Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zooming-in-on-time">Zooming in on time</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-meaning-adding-in-turbidity">Make Meaning - Adding in Turbidity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#going-beyond-other-instruments">Going Beyond - Other Instruments</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pioneer-mab-storm-example-activity-python-quickstart">
+<h1>Pioneer MAB Storm Example Activity / Python Quickstart<a class="headerlink" href="#pioneer-mab-storm-example-activity-python-quickstart" title="Permalink to this heading">#</a></h1>
+<p>Written by Sage Lichtenwalner, Rutgers University, May 23, 2024</p>
+<p>In this notebook, we will demonstrate how to access and plot data from the new <em>OOI Pioneer MAB Array</em>.</p>
+<img src="https://oceanobservatories.org/wp-content/uploads/2021/06/Pioneer-Figure-1.png" width="450px">
+<p>The Pioneer MAB Array was deployed in April 2024 off the coast of North Carolina, a bit north of Cape Hatteras.  While there are a number of ways to access data from the OOI, we will use the relatively new OOI ERDDAP data server, which provides a straightforward way to request and download data.  Erddap servers are used by a number of oceanographic data centers, so once you learn one, you can easily get around others.</p>
+<p>This example will highlight wind, wave and weather measurements made by the <em>Central Surface Mooring</em> during the <a class="reference external" href="https://ocracokeobserver.com/2024/04/09/another-brief-storm-system-heading-our-way-thursday/">first storm</a> to pass by the array in late April.  Weather timeseries measurements tend to be easier for students to work with, as they tend to be straightforward measurements and students often have an intuitive understanding of what they mean.</p>
+<img src="https://oceanobservatories.org/wp-content/uploads/2024/03/MAB-Array-map-2-scaled.jpg" width="450px" align="right">
+<p><strong>At the end of this notebook activity, you will be able to:</strong></p>
+<ul class="simple">
+<li><p>Understand how to use the <em>erddapy</em> library to easily load data from the OOI ERDDAP data server into a programming environment</p></li>
+<li><p>Generate graphs of wind, waves and other variables from the Pioneer MAB Central Surface Mooring</p></li>
+<li><p>Compare different techniques for plotting multiple variables/instruments on the same graph</p></li>
+<li><p>Use 2 ways to select time periods for graphing (during download vs. plot axes limits)</p></li>
+<li><p>Interpret the time relationship between multiple variables</p></li>
+<li><p>Understand how to use the erddapy search feature to find other OOI instruments (optional extension)</p></li>
+</ul>
+<p><strong>Pedagogical Approach</strong>
+In addition to demonstrating how to use code to access and plot OOI data, this notebook will also (loosely) use the Engage-Explore-Make Meaning format to guide students through the activity.  You can find out more about this approach (which is a pared down version of the 5E constructivist model) on the <a class="reference external" href="https://polar-ice.org/about-us/polar-cap/">Polar ICE</a> site.</p>
+<section id="engage-finding-a-wind-storm">
+<h2>Engage - Finding a Wind Storm<a class="headerlink" href="#engage-finding-a-wind-storm" title="Permalink to this heading">#</a></h2>
+<p>In April 2024, a <a class="reference external" href="https://ocracokeobserver.com/2024/04/09/another-brief-storm-system-heading-our-way-thursday/">coastal storm</a> passed the new Pioneer MAB Array off the coast of North Carolina. This was the first storm the new array measured. According to <a class="reference external" href="https://www.timeanddate.com/weather/&#64;4470221/historic?month=4&amp;amp;year=2024">timeanddate.com</a>, the highest winds during the storm were recorded late in the day on April 11.  Let’s take a look at what the Central Surface Mooring recorded this month, to see how the storm compares with the rest of the month.</p>
+<p>To start, we’ll focus on wind.  Later on, we’ll take a look at waves and turbidity to see how the storm impacted the waves and sediment in the ocean.</p>
+<section id="step-0-setup-the-notebook">
+<h3>Step 0 - Setup the notebook<a class="headerlink" href="#step-0-setup-the-notebook" title="Permalink to this heading">#</a></h3>
+<p>In order to run code in this notebook, we will rely on several Python <em>libraries</em> that provide us with a number of functions to load, plot and deal with data.  To use these libraries, they must first be loaded into memory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install erddapy</span>
+<span class="c1"># !pip install erddapy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notebook Setup</span>
+<span class="kn">from</span> <span class="nn">erddapy</span> <span class="kn">import</span> <span class="n">ERDDAP</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-1-load-the-data-with-erddapy">
+<h3>Step 1 - Load the Data with erddapy<a class="headerlink" href="#step-1-load-the-data-with-erddapy" title="Permalink to this heading">#</a></h3>
+<p>We will use the <a class="reference external" href="https://ioos.github.io/erddapy/">erddapy</a> library to load the dataset from the OOI Erddap server.</p>
+<ul class="simple">
+<li><p>First we need to initialize the connection with the library.</p></li>
+<li><p>Then for each dataset we need, we will use the <code class="docutils literal notranslate"><span class="pre">e.get_download_url()</span></code> function to create the URL to download the data we want.</p></li>
+<li><p>Finally, we will load the data into a <em>Pandas DataFrame,</em> which is a popular library for playing with <em>spreadsheet</em> like data in python.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setup Erddap connection</span>
+<span class="n">server</span> <span class="o">=</span> <span class="s2">&quot;https://erddap.dataexplorer.oceanobservatories.org/erddap/&quot;</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">ERDDAP</span><span class="p">(</span>
+    <span class="n">server</span><span class="o">=</span><span class="n">server</span><span class="p">,</span>
+    <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;tabledap&quot;</span><span class="p">,</span>
+    <span class="n">response</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to download data from Erddap, we need to know the <em>dataset ID</em>.  To find the ID, navigate to the instrument you want on the OOI Data Explorer, then click the green <em>Download</em> button, and select the <em>Erddap Metadata</em> option.  This will bring up a page with the Dataset ID at the top.  Here the the IDs we will need for Winds and Waves.</p>
+<ul class="simple">
+<li><p>Central Surface Mooring, Surface Buoy: Bulk Meteorology Instrument Package A, <a class="reference external" href="https://dataexplorer.oceanobservatories.org/#metadata/110925/station/8/sensor/data?leg_clim_max=false&amp;amp;leg_clim_min=false">Winds: Speed and Direction</a></p>
+<ul>
+<li><p>ooi-cp10cnsm-sbd11-06-metbka000</p></li>
+</ul>
+</li>
+<li><p>Central Surface Mooring, Surface Buoy: Surface Wave Spectra, <a class="reference external" href="https://dataexplorer.oceanobservatories.org/#metadata/110932/station/232/sensor/data?leg_clim_max=false&amp;amp;leg_clim_min=false">Waves: Significant Height and Direction</a></p>
+<ul>
+<li><p>ooi-cp10cnsm-sbd12-05-wavssa000</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construct the URL to access Wind Data</span>
+<span class="n">url_wind</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">get_download_url</span><span class="p">(</span>
+    <span class="n">dataset_id</span> <span class="o">=</span> <span class="s2">&quot;ooi-cp10cnsm-sbd11-06-metbka000&quot;</span><span class="p">,</span>
+    <span class="n">constraints</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;time&gt;=&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-04-01&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;time&lt;=&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-04-30&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># By default, Jupyter notebooks will print out the last line, if it&#39;s simply a variable</span>
+<span class="c1"># Otherwise, you will need to use the print() function to display variables earlier in the cell</span>
+<span class="n">url_wind</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;https://erddap.dataexplorer.oceanobservatories.org/erddap/tabledap/ooi-cp10cnsm-sbd11-06-metbka000.csv?&amp;time&gt;=1711929600.0&amp;time&lt;=1714435200.0&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you click on this URL we created, it will download the CSV file to your computer.  But we don’t need to do that, we can have the script download and load the data directly.  There are a number of ways to do this, but we will use the pandas <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code> function.</p>
+<p>Note, if we use the “csv” response option above in the erddapy setup, we need to skip the 2nd row in the data file that contains the units.  Alternatively, we could use the “csvp” option which would combine the units and variable name into the header row.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the data from the url</span>
+<span class="n">df_wind</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url_wind</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Display the first few lines</span>
+<span class="n">df_wind</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>z</th>
+      <th>air_pressure</th>
+      <th>sea_water_electrical_conductivity</th>
+      <th>condsrf</th>
+      <th>frshflx</th>
+      <th>mommflx</th>
+      <th>latnflx</th>
+      <th>latnflx__minute</th>
+      <th>...</th>
+      <th>downwelling_longwave_flux_in_air</th>
+      <th>downwelling_shortwave_flux_in_air</th>
+      <th>sea_surface_salinity</th>
+      <th>air_temperature</th>
+      <th>sea_surface_temperature</th>
+      <th>tempskn</th>
+      <th>eastward_wind</th>
+      <th>northward_wind</th>
+      <th>wind_speed</th>
+      <th>station</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-04-04 00:00:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>993.430</td>
+      <td>NaN</td>
+      <td>3.27450</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>372.100006</td>
+      <td>2.60</td>
+      <td>28.562679</td>
+      <td>14.866</td>
+      <td>11.2890</td>
+      <td>NaN</td>
+      <td>1.821629</td>
+      <td>8.318616</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 00:01:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>993.430</td>
+      <td>NaN</td>
+      <td>3.27760</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>371.399994</td>
+      <td>2.50</td>
+      <td>28.618954</td>
+      <td>14.828</td>
+      <td>11.2550</td>
+      <td>NaN</td>
+      <td>1.920159</td>
+      <td>8.838608</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 00:02:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>993.500</td>
+      <td>NaN</td>
+      <td>3.27380</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>371.700012</td>
+      <td>2.60</td>
+      <td>28.551282</td>
+      <td>14.813</td>
+      <td>11.2950</td>
+      <td>NaN</td>
+      <td>2.155071</td>
+      <td>8.988330</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 00:03:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>993.465</td>
+      <td>NaN</td>
+      <td>3.27745</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>372.250000</td>
+      <td>2.55</td>
+      <td>28.603192</td>
+      <td>14.862</td>
+      <td>11.2735</td>
+      <td>NaN</td>
+      <td>2.370044</td>
+      <td>8.909518</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 00:04:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>993.220</td>
+      <td>NaN</td>
+      <td>3.27550</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>372.600006</td>
+      <td>2.60</td>
+      <td>28.571562</td>
+      <td>14.858</td>
+      <td>11.2900</td>
+      <td>NaN</td>
+      <td>1.905212</td>
+      <td>9.264139</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 33 columns</p>
+</div></div></div>
+</div>
+<p>As you can see the METBK sensor has a lot of variables. We’re only going to focus on wind_speed right now, but you can play with the others later if you’re interested.</p>
+<p>If you look at the first few rows for wind_speed, you’ll noticed they are all NaN.  This is because this measurement is currently only calculated every hour, while the raw data is available every minute.  To deal with this, we could either calculate wind_speed for every minute based on the east and north wind velocities, or we can simply remove the rows that do not have a valid wind_speed to simplify the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove the NaN wind_speed values</span>
+<span class="n">df_wind</span> <span class="o">=</span> <span class="n">df_wind</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;wind_speed&#39;</span><span class="p">)</span>
+<span class="n">df_wind</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>z</th>
+      <th>air_pressure</th>
+      <th>sea_water_electrical_conductivity</th>
+      <th>condsrf</th>
+      <th>frshflx</th>
+      <th>mommflx</th>
+      <th>latnflx</th>
+      <th>latnflx__minute</th>
+      <th>...</th>
+      <th>downwelling_longwave_flux_in_air</th>
+      <th>downwelling_shortwave_flux_in_air</th>
+      <th>sea_surface_salinity</th>
+      <th>air_temperature</th>
+      <th>sea_surface_temperature</th>
+      <th>tempskn</th>
+      <th>eastward_wind</th>
+      <th>northward_wind</th>
+      <th>wind_speed</th>
+      <th>station</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-04-04 05:27:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>996.19</td>
+      <td>NaN</td>
+      <td>3.4054</td>
+      <td>-9.150000e-08</td>
+      <td>0.260062</td>
+      <td>15.701299</td>
+      <td>12.064283</td>
+      <td>...</td>
+      <td>361.547476</td>
+      <td>2.400000</td>
+      <td>30.273337</td>
+      <td>11.497008</td>
+      <td>10.746695</td>
+      <td>10.733044</td>
+      <td>3.802182</td>
+      <td>-10.085208</td>
+      <td>12.009406</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 06:27:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-7.000000e-08</td>
+      <td>0.109626</td>
+      <td>27.934739</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>285.928061</td>
+      <td>1.712282</td>
+      <td>NaN</td>
+      <td>10.669146</td>
+      <td>10.705088</td>
+      <td>10.600101</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8.664866</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 07:27:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>996.88</td>
+      <td>NaN</td>
+      <td>3.4772</td>
+      <td>-8.360000e-08</td>
+      <td>0.079619</td>
+      <td>30.599669</td>
+      <td>28.090997</td>
+      <td>...</td>
+      <td>279.281068</td>
+      <td>1.993516</td>
+      <td>31.028822</td>
+      <td>10.506804</td>
+      <td>10.692357</td>
+      <td>10.565952</td>
+      <td>3.588233</td>
+      <td>-5.914413</td>
+      <td>7.634116</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 08:27:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>997.15</td>
+      <td>NaN</td>
+      <td>3.4926</td>
+      <td>9.100000e-09</td>
+      <td>0.044095</td>
+      <td>22.486617</td>
+      <td>22.242116</td>
+      <td>...</td>
+      <td>279.238749</td>
+      <td>1.700000</td>
+      <td>31.243770</td>
+      <td>10.449143</td>
+      <td>10.602087</td>
+      <td>10.451609</td>
+      <td>1.690051</td>
+      <td>-5.309927</td>
+      <td>6.033903</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 09:27:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>997.71</td>
+      <td>NaN</td>
+      <td>3.4984</td>
+      <td>4.200000e-09</td>
+      <td>0.016292</td>
+      <td>10.477231</td>
+      <td>10.257714</td>
+      <td>...</td>
+      <td>289.046529</td>
+      <td>1.600000</td>
+      <td>31.396795</td>
+      <td>10.397347</td>
+      <td>10.507155</td>
+      <td>10.311763</td>
+      <td>2.087565</td>
+      <td>-3.045599</td>
+      <td>3.869668</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 33 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="step-2-a-quick-plot-of-winds">
+<h3>Step 2 - A Quick Plot of Winds<a class="headerlink" href="#step-2-a-quick-plot-of-winds" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a quick plot using the built-in Pandas plotting function</span>
+<span class="n">df_wind</span><span class="o">.</span><span class="n">wind_speed</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Pioneer MAB Central Surface Mooring&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1952b0e32dffdab1a13953b44c3b6629c14ae2e9e0fcdbb277b7cff1d8030417.png" src="_images/1952b0e32dffdab1a13953b44c3b6629c14ae2e9e0fcdbb277b7cff1d8030417.png" />
+</div>
+</div>
+<p><strong>Questions</strong></p>
+<ul class="simple">
+<li><p>What is the max and minimum wind speed?</p></li>
+<li><p>Describe the general pattern of the windspeed throughout the month.</p></li>
+<li><p>When was the highest wind speed measured?  Does that match the timeframe of the storm?</p></li>
+</ul>
+</section>
+</section>
+<section id="explore-comparing-winds-and-waves">
+<h2>Explore - Comparing Winds and Waves<a class="headerlink" href="#explore-comparing-winds-and-waves" title="Permalink to this heading">#</a></h2>
+<p>Now that we’ve looked at the wind speed, let’s load another dataset that includes waves so we can compare the two.</p>
+<p>We’ll use the same code as before, but save the dataset as a different variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the Wave Data</span>
+<span class="n">url_wave</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">get_download_url</span><span class="p">(</span>
+    <span class="n">dataset_id</span> <span class="o">=</span> <span class="s2">&quot;ooi-cp10cnsm-sbd12-05-wavssa000&quot;</span><span class="p">,</span>
+    <span class="n">constraints</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;time&gt;=&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-04-01&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;time&lt;=&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-04-30&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">url_wave</span><span class="p">)</span>
+
+<span class="n">df_waves</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url_wave</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">df_waves</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>https://erddap.dataexplorer.oceanobservatories.org/erddap/tabledap/ooi-cp10cnsm-sbd12-05-wavssa000.csv?&amp;time&gt;=1711929600.0&amp;time&lt;=1714435200.0
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>z</th>
+      <th>sea_surface_wave_mean_period</th>
+      <th>sea_surface_wave_mean_height</th>
+      <th>sea_surface_wave_to_direction</th>
+      <th>sea_surface_wave_maximum_height</th>
+      <th>sea_surface_wave_significant_height</th>
+      <th>sea_surface_wave_significant_period</th>
+      <th>station</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2024-04-04 00:23:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>5.5</td>
+      <td>1.43</td>
+      <td>155.545919</td>
+      <td>3.52</td>
+      <td>2.21</td>
+      <td>6.8</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 01:23:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>5.4</td>
+      <td>1.28</td>
+      <td>155.375921</td>
+      <td>3.17</td>
+      <td>1.98</td>
+      <td>6.6</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 02:23:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>5.5</td>
+      <td>1.18</td>
+      <td>156.595922</td>
+      <td>2.97</td>
+      <td>1.81</td>
+      <td>6.7</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 03:23:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>5.5</td>
+      <td>1.29</td>
+      <td>153.905920</td>
+      <td>3.76</td>
+      <td>2.03</td>
+      <td>6.7</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2024-04-04 04:23:00+00:00</th>
+      <td>35.94988</td>
+      <td>-75.11943</td>
+      <td>0.0</td>
+      <td>5.7</td>
+      <td>1.31</td>
+      <td>154.705908</td>
+      <td>3.38</td>
+      <td>2.08</td>
+      <td>7.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="wind-and-wave-plots">
+<h3>Wind and Wave Plots<a class="headerlink" href="#wind-and-wave-plots" title="Permalink to this heading">#</a></h3>
+<p>Let’s walk through a few different ways you can make plots comparing two variables.</p>
+<ul class="simple">
+<li><p>First, we’ll plot variables on the same graph</p></li>
+<li><p>Second, we’ll use subplots to plot the two variables separately.</p></li>
+<li><p>Finally, we’ll use a special function (twinx) to plot both variables on the same plot, but with different y-axes.</p></li>
+</ul>
+</section>
+<section id="plot-the-data-on-the-same-graph">
+<h3>Plot the data on the same graph<a class="headerlink" href="#plot-the-data-on-the-same-graph" title="Permalink to this heading">#</a></h3>
+<p>This is not an ideal option in this case, becuase the units are different.  But if we were plotting two temperature lines, this would be a good approach.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_wind</span><span class="p">[</span><span class="s1">&#39;wind_speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wind Speed&#39;</span><span class="p">)</span>
+<span class="n">df_waves</span><span class="p">[</span><span class="s1">&#39;sea_surface_wave_significant_height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wave Height&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Winds and Waves&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Pioneer MAB Central Surface Mooring&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/44a5deb87012bd9b1867cd1b1cbb0aa9724ec5051759ca8c6f2880740784c8fd.png" src="_images/44a5deb87012bd9b1867cd1b1cbb0aa9724ec5051759ca8c6f2880740784c8fd.png" />
+</div>
+</div>
+</section>
+<section id="subplots">
+<h3>Subplots<a class="headerlink" href="#subplots" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Subplots using the built-in pandas plot function</span>
+<span class="n">fig</span><span class="p">,(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">df_wind</span><span class="p">[</span><span class="s1">&#39;wind_speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">df_waves</span><span class="p">[</span><span class="s1">&#39;sea_surface_wave_significant_height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Sig Wave Height (m)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Pioneer MAB Central Surface Mooring&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d1617883de433ab2cbb5854d2f6d97b70959bc667b0820be2484d84b6606d040.png" src="_images/d1617883de433ab2cbb5854d2f6d97b70959bc667b0820be2484d84b6606d040.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Subplots using matplotlib plot(x,y) function</span>
+<span class="n">fig</span><span class="p">,(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_wind</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df_wind</span><span class="p">[</span><span class="s1">&#39;wind_speed&#39;</span><span class="p">])</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_waves</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df_waves</span><span class="p">[</span><span class="s1">&#39;sea_surface_wave_significant_height&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Sig Wave Height (m)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="c1"># When we use matplotlib directly for plotting, we will typically need to rotate the x-tick labels</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Pioneer MAB Central Surface Mooring&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9048f687e8f62caee1a34aafeaf19626a87ec1a95073349f3a4dd13770c6ca72.png" src="_images/9048f687e8f62caee1a34aafeaf19626a87ec1a95073349f3a4dd13770c6ca72.png" />
+</div>
+</div>
+</section>
+<section id="twinx-plot">
+<h3>TwinX Plot<a class="headerlink" href="#twinx-plot" title="Permalink to this heading">#</a></h3>
+<p>Another approach is to plot both variables in the same plot using two different y-scales.  This is not typically recommended by data visualization experts, because of the complexity of interpreting two different scales on top of each other.  But you will see this style all the time in oceanography, and it can make correlations easier to interpret.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TwinX Plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">df_wind</span><span class="p">[</span><span class="s1">&#39;wind_speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">df_waves</span><span class="p">[</span><span class="s1">&#39;sea_surface_wave_significant_height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Sig Wave Height (m)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+
+<span class="c1"># We need to rotate the ticks</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">autofmt_xdate</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Pioneer MAB Central Surface Mooring&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1738f7a45edc93ae8e23e5e3b8edb2923abce919d4297b517842e7f0a27718cf.png" src="_images/1738f7a45edc93ae8e23e5e3b8edb2923abce919d4297b517842e7f0a27718cf.png" />
+</div>
+</div>
+</section>
+<section id="zooming-in-on-time">
+<h3>Zooming in on time<a class="headerlink" href="#zooming-in-on-time" title="Permalink to this heading">#</a></h3>
+<p>Finally, let’s demonstrate how to zoom in on a particular time period.</p>
+<p>One option is to go back up to the top and select a different time range for our data request.  If we wanted to expand the time period, we would definitely have to do this.  However, if we want to zoom in, because we already have the data we want loaded, we can simply change the x-limits on the graph to the range we want.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Zoom into a specific time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1"># Subplots using the built-in pandas plot function</span>
+<span class="n">fig</span><span class="p">,(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">df_wind</span><span class="p">[</span><span class="s1">&#39;wind_speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wind Speed (m/s)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">df_waves</span><span class="p">[</span><span class="s1">&#39;sea_surface_wave_significant_height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Sig Wave Height (m)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Pioneer MAB Central Surface Mooring&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Because the x-axis is shared, we only have to do this once.</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">14</span><span class="p">));</span>
+
+<span class="c1"># Let&#39;s also expand the y-limit so it starts at 0</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">4.5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7b480aabd1263ba4d59c857f4fc45cbf07531d07b2f14f155c1b0803ec1c7d23.png" src="_images/7b480aabd1263ba4d59c857f4fc45cbf07531d07b2f14f155c1b0803ec1c7d23.png" />
+</div>
+</div>
+<p>Now that we’ve demonstrated how to load and plot OOI data in python, let’s reflect on the data we’ve plotted.</p>
+<p><strong>Questions</strong></p>
+<ul class="simple">
+<li><p>What is the minimum and maximum of each dataset?</p></li>
+<li><p>What patterns do you see in the data?</p>
+<ul>
+<li><p>How do the lines compare?</p></li>
+<li><p>Are there periods when they move together?  Periods when they seem to move less in sync?</p></li>
+<li><p>When are the peaks in the two datasets?  How do they compare?</p></li>
+</ul>
+</li>
+<li><p>Why do you think these datasets are or are not correlated at different times?</p></li>
+</ul>
+</section>
+</section>
+<section id="make-meaning-adding-in-turbidity">
+<h2>Make Meaning - Adding in Turbidity<a class="headerlink" href="#make-meaning-adding-in-turbidity" title="Permalink to this heading">#</a></h2>
+<p>We can also lood other instruments, like turbidity which is a measure of how much sediment or other particles are in the water.</p>
+<p>Let’s load the <a class="reference external" href="https://dataexplorer.oceanobservatories.org/#metadata/110984/station/37/sensor/data?start=2024-04-01T00:00:00Z&amp;amp;end=2024-05-01T00:00:00Z&amp;amp;leg_clim_max=false&amp;amp;leg_clim_min=false">surface</a> and <a class="reference external" href="https://dataexplorer.oceanobservatories.org/#metadata/110983/station/37/sensor/data?start=2024-04-01T00:00:00Z&amp;amp;end=2024-05-01T00:00:00Z&amp;amp;leg_clim_max=false&amp;amp;leg_clim_min=false">bottom</a> turbidity instruments at the mooring and see how the storm affected them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load Surface Turbidity</span>
+<span class="n">url_tsurf</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">get_download_url</span><span class="p">(</span>
+    <span class="n">dataset_id</span> <span class="o">=</span> <span class="s2">&quot;ooi-cp10cnsm-rid26-03-turbda000&quot;</span><span class="p">,</span>
+    <span class="n">constraints</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;time&gt;=&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-04-01&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;time&lt;=&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-04-30&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df_tsurf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url_tsurf</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Load Bottom Turbidity</span>
+<span class="n">url_tbot</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">get_download_url</span><span class="p">(</span>
+    <span class="n">dataset_id</span> <span class="o">=</span> <span class="s2">&quot;ooi-cp10cnsm-mfd36-03-turbda000&quot;</span><span class="p">,</span>
+    <span class="n">constraints</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;time&gt;=&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-04-01&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;time&lt;=&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-04-30&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df_tbot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url_tbot</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And now let’s make a plot!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Subplots using the built-in pandas plot function</span>
+<span class="n">fig</span><span class="p">,(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">ax3</span><span class="p">,</span><span class="n">ax4</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">df_wind</span><span class="p">[</span><span class="s1">&#39;wind_speed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Winds (m/s)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">df_waves</span><span class="p">[</span><span class="s1">&#39;sea_surface_wave_significant_height&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Waves (m)&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">df_tsurf</span><span class="p">[</span><span class="s1">&#39;sea_water_turbidity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Surf Turb.&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">df_tbot</span><span class="p">[</span><span class="s1">&#39;sea_water_turbidity&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;brown&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Bot Turb.&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Pioneer MAB Central Surface Mooring&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f37010f7fbb7ceb25c71ba75e1acb99a9315ea72c9bb866be5ce536d8fa3bd38.png" src="_images/f37010f7fbb7ceb25c71ba75e1acb99a9315ea72c9bb866be5ce536d8fa3bd38.png" />
+</div>
+</div>
+<p><strong>Questions</strong></p>
+<ul class="simple">
+<li><p>What is the max and min values observed for the surface and bottom turbidity sensors?</p></li>
+<li><p>When do the surface and bottom turbidity sensors peak?</p></li>
+<li><p>How do those peaks compare with each other?  With the wind and wave peaks?</p></li>
+<li><p>Why do you think the surface turbidity value is different from the bottom?</p></li>
+<li><p>Why do you think the timing of the peak is different for the surface and the bottom?</p></li>
+<li><p>Do you think the storm resuspended sediment from the seafloor?</p></li>
+<li><p>Do you think the sediment made it to the surface?</p></li>
+</ul>
+</section>
+<section id="going-beyond-other-instruments">
+<h2>Going Beyond - Other Instruments<a class="headerlink" href="#going-beyond-other-instruments" title="Permalink to this heading">#</a></h2>
+<p>In addition to winds and waves, we can look at how the storm impacted other measurements made by the buoy.</p>
+<p>In fact, we already have a lot of other measurements already loaded you can look at.</p>
+<ul class="simple">
+<li><p>df_wind includes the following variables:</p>
+<ul>
+<li><p>air_pressure</p></li>
+<li><p>relative_humidity</p></li>
+<li><p>sea_surface_salinity</p></li>
+<li><p>air_temperature</p></li>
+<li><p>sea_surface_temperature</p></li>
+</ul>
+</li>
+<li><p>df_waves also includes</p>
+<ul>
+<li><p>sea_surface_wave_significant_period</p></li>
+</ul>
+</li>
+</ul>
+<p>In the cells below, use the code above to make some addtional plots.  You can try plotting some of the other variables, or you can change the date range of the plot.  (Note, if you want data after April, you will need to re-run the data load statements or copy and create new ones below.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your turn - Make your own plots here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your turn - Make your own plots here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Pioneer%20MAB%20Storm%20-%20Quick%20Start.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pioneer MAB Storm Example Activity / Python Quickstart</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Pioneer%20MAB%20Profiler%20Example.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Pioneer MAB Profiler Example</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#engage-finding-a-wind-storm">Engage - Finding a Wind Storm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-0-setup-the-notebook">Step 0 - Setup the notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-load-the-data-with-erddapy">Step 1 - Load the Data with erddapy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-a-quick-plot-of-winds">Step 2 - A Quick Plot of Winds</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-comparing-winds-and-waves">Explore - Comparing Winds and Waves</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wind-and-wave-plots">Wind and Wave Plots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-data-on-the-same-graph">Plot the data on the same graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subplots">Subplots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#twinx-plot">TwinX Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zooming-in-on-time">Zooming in on time</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-meaning-adding-in-turbidity">Make Meaning - Adding in Turbidity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#going-beyond-other-instruments">Going Beyond - Other Instruments</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The OOI Data Labs Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
